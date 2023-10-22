@@ -1,10 +1,12 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
 
-import { CreateUsersTable1695281639949 } from "./migrations/1695281639949-CreateUsersTable"
 import { User } from "../modules/accounts/entities/User"
 import { Classroom } from "../modules/classrooms/entities/Classroom"
+import { UserTokens } from "../modules/accounts/entities/UserTokens"
+import { CreateUsersTable1695281639949 } from "./migrations/1695281639949-CreateUsersTable"
 import { CreateClassroomsTable1695903687240 } from "./migrations/1695903687240-CreateClassroomsTable"
+import { CreateUsersTokensTable1698006547888 } from "./migrations/1698006547888-CreateUsersTokensTable"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -15,7 +17,7 @@ export const AppDataSource = new DataSource({
     database: "teammate",
     synchronize: true,
     logging: false,
-    entities: [User, Classroom],
-    migrations: [CreateUsersTable1695281639949, CreateClassroomsTable1695903687240],
+    entities: [User, UserTokens, Classroom],
+    migrations: [CreateUsersTable1695281639949, CreateUsersTokensTable1698006547888, CreateClassroomsTable1695903687240],
     subscribers: [],
 })

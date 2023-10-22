@@ -1,18 +1,18 @@
 import { inject, injectable } from 'tsyringe';
 import { hash } from 'bcrypt';
 
-import { IUsersRepository } from '../../repositories/IUsersRepository';
-import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
-import { AppError } from '../../../../shared/errors/AppError';
+import { IUsersRepository } from '../repositories/IUsersRepository';
+import { ICreateUserDTO } from '../dtos/ICreateUserDTO';
+import { AppError } from '../../../shared/errors/AppError';
 
 @injectable()
-class CreateUserUseCase {
+class UserService {
   constructor(
-    @inject("UsersRepository")
+    @inject("UsersRepository") 
     private usersRepository: IUsersRepository
   ) {}
 
-  async execute({
+  async create({
     fullname,
     password,
     email, 
@@ -25,12 +25,10 @@ class CreateUserUseCase {
       await this.usersRepository.findByRegistration(registration);
 
     if (userWithEmailAlreadyExists) {
-      // TODO: Trocar por AppError
       throw new AppError("Já existe um usuário com esse email!");
     }
 
     if (userWithRegistrationAlreadyExists) {
-      // TODO: Trocar por AppError
       throw new AppError("Já existe um usuário com essa matrícula!");
     }
 
@@ -47,4 +45,4 @@ class CreateUserUseCase {
   }
 }
 
-export { CreateUserUseCase };
+export { UserService };
