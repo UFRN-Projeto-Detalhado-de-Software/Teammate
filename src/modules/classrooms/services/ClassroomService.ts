@@ -16,7 +16,7 @@ class ClassroomService {
     private usersRepository: IUsersRepository
   ) {}
   
-  async create({ name, description, professor_id, }: ICreateClassroomDTO): Promise<Classroom> {
+  async create({ name, description, professor_id }: ICreateClassroomDTO): Promise<Classroom> {
     const classroom = await this.classrooomsRepository.create({
       name, 
       description,

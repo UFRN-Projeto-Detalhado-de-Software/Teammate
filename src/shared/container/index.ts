@@ -8,6 +8,8 @@ import { IClassroomsRepository } from "../../modules/classrooms/repositories/ICl
 import { ClassroomsRepository } from "../../modules/classrooms/repositories/implementations/ClassroomsRepository";
 import { UsersTokensRepository } from "../../modules/accounts/repositories/implementations/UsersTokensRepository";
 import { IUsersTokensRepository } from "../../modules/accounts/repositories/IUsersTokensRepository";
+import { IClassroomTeamsRepository } from "../../modules/classrooms/repositories/IClassroomTeamsRepository";
+import { ClassroomTeamsRepository } from "../../modules/classrooms/repositories/implementations/ClassroomTeamsRepository";
 
 container.registerSingleton<IUsersRepository>(
   "UsersRepository",
@@ -17,6 +19,11 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IClassroomsRepository>(
   "ClassroomsRepository",
   ClassroomsRepository
+);
+
+container.registerSingleton<IClassroomTeamsRepository>(
+  "ClassroomTeamsRepository",
+  ClassroomTeamsRepository
 );
 
 container.registerSingleton<IUsersTokensRepository>(
