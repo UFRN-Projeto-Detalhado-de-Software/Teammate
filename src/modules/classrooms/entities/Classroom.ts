@@ -1,5 +1,7 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryColumn, UpdateDateColumn } from "typeorm";
+
+import { User } from "../../accounts/entities/User";
 
 @Entity("classrooms")
 class Classroom {
@@ -14,6 +16,14 @@ class Classroom {
 
   @Column()
   professor_id: string;
+
+  @ManyToMany(() => User)
+  @JoinTable({
+    name: "classrooms_users",
+    joinColumns: [{ name: "classroom_id" }],
+    inverseJoinColumns: [{ name: "user_id" }],
+  })
+  members: User[];
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;

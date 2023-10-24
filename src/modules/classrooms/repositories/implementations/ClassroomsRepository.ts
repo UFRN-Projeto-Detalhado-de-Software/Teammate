@@ -24,6 +24,11 @@ class ClassroomsRepository implements IClassroomsRepository {
 
     return classroom;
   }
+
+  async findById(id: string): Promise<Classroom | null> {
+    const classroom = this.repository.findOneBy({ id });
+    return classroom;
+  }
 }
 
 export { ClassroomsRepository };

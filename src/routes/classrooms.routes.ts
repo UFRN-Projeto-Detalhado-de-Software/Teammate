@@ -1,10 +1,29 @@
 import { Router } from "express";
-import { CreateClassrooomController } from "../modules/classrooms/useCases/createClassroom/CreateClassroomController";
+import { ClassrooomController } from "../modules/classrooms/controllers/ClassroomController";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
+import { ensureProfessor } from "../middlewares/ensureProfessor";
 
 const classroomsRoutes = Router();
 
-const createClassroomController = new CreateClassrooomController();
+const classroomController = new ClassrooomController();
 
-classroomsRoutes.post("/", createClassroomController.handle);
+classroomsRoutes.post(
+  "/", 
+  ensureAuthenticated, 
+  ensureProfessor, 
+  classroomController.create
+);
+
+classroomsRoutes.get(
+  "/:id",
+  ensureAuthenticated,
+  classroomController.details
+);
+
+classroomsRoutes.post(
+  "/join",
+  ensureAuthenticated,
+  classroomController.join
+);
 
 export { classroomsRoutes }; 
