@@ -5,7 +5,7 @@ export class CreateClassroomTeamTable1698162930395 implements MigrationInterface
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "classrooms",
+        name: "teams",
         columns: [
           {
             name: "id",

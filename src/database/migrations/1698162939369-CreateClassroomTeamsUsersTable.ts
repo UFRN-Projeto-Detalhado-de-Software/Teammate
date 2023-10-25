@@ -5,7 +5,7 @@ export class CreateClassroomTeamsUsersTable1698162939369 implements MigrationInt
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "classroomteams_users",
+        name: "teams_users",
         columns: [
           {
             name: "team_id",
@@ -25,7 +25,7 @@ export class CreateClassroomTeamsUsersTable1698162939369 implements MigrationInt
     );
       
     await queryRunner.createForeignKey(
-      "classroomteams_users",
+      "teams_users",
       new TableForeignKey({
         name: "FKClassroomTeamUser",
         referencedTableName: "teams",
@@ -37,7 +37,7 @@ export class CreateClassroomTeamsUsersTable1698162939369 implements MigrationInt
     );
 
     await queryRunner.createForeignKey(
-      "classroomteams_users",
+      "teams_users",
       new TableForeignKey({
         name: "FKUserClassroomTeam",
         referencedTableName: "users",
@@ -51,15 +51,15 @@ export class CreateClassroomTeamsUsersTable1698162939369 implements MigrationInt
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey(
-      "classroomteams_users",
+      "teams_users",
       "FKUserClassroomTeam"
     );
 
     await queryRunner.dropForeignKey(
-      "classroomteams_users",
+      "teams_users",
       "FKClassroomTeamUser"
     );
 
-    await queryRunner.dropTable("classroomteams_users");
+    await queryRunner.dropTable("teams_users");
   }
 }
