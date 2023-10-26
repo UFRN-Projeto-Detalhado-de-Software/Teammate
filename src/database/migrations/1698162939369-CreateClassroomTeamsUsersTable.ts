@@ -50,15 +50,15 @@ export class CreateClassroomTeamsUsersTable1698162939369 implements MigrationInt
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey(
-      "teams_users",
-      "FKUserClassroomTeam"
-    );
+    // await queryRunner.dropForeignKey(
+    //   "teams_users",
+    //   "FKUserClassroomTeam"
+    // );
 
-    await queryRunner.dropForeignKey(
-      "teams_users",
-      "FKClassroomTeamUser"
-    );
+    // await queryRunner.dropForeignKey(
+    //   "teams_users",
+    //   "FKClassroomTeamUser"
+    // );
 
     await queryRunner.dropTable("teams_users");
   }
